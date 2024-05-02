@@ -19,6 +19,23 @@ Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
 Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
 It does not matter what you leave beyond the returned k (hence they are underscores).
 
+
 Two pointer template
 """
 
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+
+        slow, fast = 0, 1
+
+        if len(nums) <= 1:
+            return len(nums)
+        
+        while slow <= fast and fast < len(nums):
+            if nums[slow] == nums[fast]:
+                fast += 1
+            else:
+                nums[slow + 1] = nums[fast]
+                slow += 1
+
+        return slow + 1
